@@ -84,7 +84,7 @@ class UserUpdateView(APIView):
     def patch(self, request):
         try:
             user = request.user
-            # print(request.user)
+            print(request.user.id)
             user.first_name = request.data.get('first_name')
             user.last_name = request.data.get('last_name')
             user.save()
