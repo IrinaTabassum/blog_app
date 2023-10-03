@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status   
 from django.contrib.auth.hashers import check_password
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -28,13 +28,11 @@ class UserListView(APIView):
 
 class GetUserByIdView(APIView):
     def get(self, request, user_id, format=None):
-        print(user_id)
         try:
             user = User.objects.get(id=user_id)
             serializer = UserSerializer(user)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
-            print(e)
             return Response({"massage":"user not found"}, status=status.HTTP_404_NOT_FOUND)
         
 
